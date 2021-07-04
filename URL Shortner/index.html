@@ -29,21 +29,6 @@
         border-radius: 25px;
     }
 </style>
-<script>
-    function httpGet() {
-        let text = document.getElementById("lurl").value;
-        console.log(text);
-        var theUrl = "https://vikasurlshortner.azurewebsites.net/ShortUrl/LongToShort/" + text;
-        console.log(theUrl);
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET", theUrl, false); // false for synchronous request
-        xmlHttp.send(null);
-        console.log(xmlHttp.responseText);
-        document.write(xmlHttp.responseText);
-        document.getElementById("surl").innerText = xmlHttp.responseText;
-        return xmlHttp.responseText;
-    }
-</script>
 
 <body style="background-image: url('img.jpg');">
     <h1 style="text-align: center;">URL Shortner</h1>
@@ -56,6 +41,22 @@
         <input type="text " id="surl " name="surl ">
 
     </div>
+    <script>
+        function httpGet() {
+            let text = document.getElementById("lurl").value;
+            console.log(text);
+            var theUrl = "https://vikasurlshortner.azurewebsites.net/ShortUrl/LongToShort/" + text;
+            console.log(theUrl);
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", theUrl, false); // false for synchronous request
+            xmlHttp.send(null);
+            console.log(xmlHttp.responseText);
+            let sel = document.querySelectorAll("input")
+                // document.write(xmlHttp.responseText);
+            sel[1].value = xmlHttp.responseText;
+            return xmlHttp.responseText;
+        }
+    </script>
 
 </body>
 
