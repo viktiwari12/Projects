@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortner</title>
+</head>
+<style>
+    #main_ dabba {
+        width: 300px;
+        height: 100px;
+        padding: 50px;
+        border: 1px solid red;
+    }
+    
+    #but1 {
+        background-color: lightcoral;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+    }
+</style>
+<script>
+    function httpGet() {
+        let text = document.getElementById("lurl").value;
+        console.log(text);
+        var theUrl = "https://vikasurlshortner.azurewebsites.net/ShortUrl/LongToShort/" + text;
+        console.log(theUrl);
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", theUrl, false); // false for synchronous request
+        xmlHttp.send(null);
+        console.log(xmlHttp.responseText);
+        document.write(xmlHttp.responseText);
+        document.getElementById("surl").innerText = xmlHttp.responseText;
+        return xmlHttp.responseText;
+    }
+</script>
+
+<body style="background-image: url('img.jpg');">
+    <h1 style="text-align: center;">URL Shortner</h1>
+    <div id="main_dabba " style=" text-align: center; ">
+
+        <label for="lurl " style="border-radius: 25px;">Long URL:</label><br>
+        <input type="text " id="lurl" name="lurl" size="50 "><br>
+        <button id="but1" onclick="httpGet()">Submit</button><br>
+        <label for="surl " style="border-radius: 25px;">Short Url:</label><br>
+        <input type="text " id="surl " name="surl ">
+
+    </div>
+
+</body>
+
+</html>
